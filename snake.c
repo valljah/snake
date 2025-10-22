@@ -501,7 +501,7 @@ int main (void)
 
    clrscr ();
 
-   int status = system ("stty sane");
+   status = system ("stty sane");
    return WEXITSTATUS(status);
 }
 
