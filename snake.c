@@ -66,7 +66,8 @@ void sig_handler (int signal __attribute__ ((unused)))
 {
    clrscr ();
    DBG("Received signal %d\n", signal);
-   exit (WEXITSTATUS(system ("stty sane")));
+   int status = system ("stty sane");
+   exit (WEXITSTATUS(status));
 }
 
 void alarm_handler (int signal __attribute__ ((unused)))
@@ -433,7 +434,8 @@ int main (void)
    screen_t screen;
    char keys[NUM_KEYS] = DEFAULT_KEYS;
 
-   if (WEXITSTATUS(system ("stty cbreak -echo stop u")))
+   int status = system ("stty cbreak -echo stop u");
+   if (WEXITSTATUS(status))
    {
       fprintf (stderr, "Failed setting up the screen, is 'stty' missing?\n");
       return 1;
@@ -499,7 +501,8 @@ int main (void)
 
    clrscr ();
 
-   return WEXITSTATUS(system ("stty sane"));
+   int status = system ("stty sane");
+   return WEXITSTATUS(status);
 }
 
 
